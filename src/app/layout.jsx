@@ -1,0 +1,44 @@
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import Link from "next/link";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata = {
+  title: "Practice Project",
+  description: "Generated my own skill",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <header className="px-5 py-2 flex items-center justify-between gap-5 bg-stone-800">
+          <Link className="" href={"/"}>
+            {" "}
+            <img className="w-[120px]" src="/logo.png" alt="" />
+          </Link>
+          <div className="space-x-5">
+            <Link className="btn" href={"/foods"}>
+              Food
+            </Link>
+            <Link className="btn" href={"/reviews"}>
+              Reviews
+            </Link>
+          </div>
+        </header>
+        <main> {children}</main>
+      </body>
+    </html>
+  );
+}
