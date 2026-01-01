@@ -1,11 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import { CartContext } from "@/context/CartProvider";
+import React, { use, useState } from "react";
 
-const CartButton = () => {
-  //   const [inCart, SetInCart] = useState(false);
+const CartButton = ({ food }) => {
+  const [inCart, setInCart] = useState(false);
+  const { addCart } = use(CartContext);
+
+  const handleAdd2Cart = () => {
+    addCart(food);
+    setInCart(true);
+  };
+
   return (
-    <button className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-100 disabled:text-gray-400">
-      Add to Cart
+    <button
+      onClick={handleAdd2Cart}
+      disabled={inCart}
+      className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-100 disabled:text-black"
+    >
+      {inCart ? "Added" : "Add to Cart"}
     </button>
   );
 };
